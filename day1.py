@@ -1,4 +1,23 @@
-from utilities import read_input
+import os
+
+
+def read_input():
+    with open(f"inputs/{os.path.basename(__file__).split('.')[0]}.txt") as text_input:
+        return list(map(lambda k: int(k.strip("\n")), text_input.readlines()))
+
+
+def count_increases():
+    inputs = read_input()
+    counts = 0
+
+    for index, measure in enumerate(inputs):
+        if index == 0:
+            continue
+
+        if measure > inputs[index - 1]:
+            counts += 1
+
+    print(counts)
 
 
 def count_three_sized_window_increases():
@@ -19,4 +38,5 @@ def count_three_sized_window_increases():
 
 
 if __name__ == "__main__":
+    count_increases()
     count_three_sized_window_increases()
